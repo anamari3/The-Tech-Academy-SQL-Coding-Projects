@@ -66,27 +66,27 @@ INSERT INTO  tbl_publisher
 SELECT * FROM tbl_publisher
 
 INSERT INTO tbl_bks
-	(bks_title)
+	(bks_title, bks_publisher_id)
 	VALUES
-	('The Lost Tribe'),
-	('Carrie'),
-	('It'),
-	('A Tale of Two Cities'),
-	('The Lord of the Rings'),
-	('The Little Prince'),
-	('Harry Potter and the Philosophers Stone'),
-	('The Little Prince'),
-	('The Hobbit'),
-	('Alices Adventures in Wonderland'),
-	('Dream of the Red Chamber'),
-	('And Then There Were None'),
-	('The Lion, the Witch and the Wardrobe'),
-	('She: A History of Adventure'),
-	('The Da Vinci Code'),
-	('The Adventures of Pinocchio'),
-	('The Catcher in the Rye'),
-	('The Alchemist'),
-	('Harry Potter and the Deathly Hallows'),
-	('Steps to Christ')
+	('The Lost Tribe', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Penguin Random House')),
+	('Carrie', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Doubleday')),
+	('It', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Viking')),
+	('A Tale of Two Cities', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Hachette Livre')),
+	('The Lord of the Rings',(SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'HarperCollins')),
+	('The Little Prince', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Pan Macmillan')),
+	('Harry Potter and the Philosophers Stone', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Penguin Random House')),
+	('The Little Prince', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Doubleday')),
+	('The Hobbit', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Viking')),
+	('Alices Adventures in Wonderland', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Hachette Livre')),
+	('Dream of the Red Chamber', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'HarperCollins')),
+	('And Then There Were None', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Pan Macmillan')),
+	('The Lion, the Witch and the Wardrobe', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Penguin Random House')),
+	('She: A History of Adventure', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Doubleday')),
+	('The Da Vinci Code', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Viking')),
+	('The Adventures of Pinocchio', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Hachette Livre')),
+	('The Catcher in the Rye', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'HarperCollins')),
+	('The Alchemist', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Pan Macmillan')),
+	('Harry Potter and the Deathly Hallows', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'HarperCollins')),
+	('Steps to Christ', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Pan Macmillan'))
 ;
 SELECT * FROM tbl_bks
