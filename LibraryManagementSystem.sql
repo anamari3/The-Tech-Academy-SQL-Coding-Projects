@@ -99,4 +99,25 @@ WHERE bks_title = 'Steps to Christ'
 INSERT INTO tbl_bkcopies
 	(bkcopies_book_id, bkcopies_branch_id, bkcopies_number_of_copies)
 	VALUES
-	((SELECT bks_id FROM tbl_bks), (SELECT branch_id FROM tbl_branch WHERE --This needs help
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lost Tribe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), 6),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Carrie'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), 2),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'It'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), 9),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'A Tale of Two Cities'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), 2),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lord of the Rings'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), 5),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'And Then There Were None'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), 7),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lion, the Witch and the Wardrobe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), 5),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'She: A History of Adventure'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), 3),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Da Vinci Code'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), 2),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Prince'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), 4),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Philosophers Stone'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 4),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Prince'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 3),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Hobbit'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 4),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Alices Adventures in Wonderland'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 7),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Dream of the Red Chamber'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 4),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'And Then There Were None'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 2),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lion, the Witch and the Wardrobe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 8),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Steps to Christ'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 2),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Deathly Hallows'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 3),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Catcher in the Rye'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 4),
+	
