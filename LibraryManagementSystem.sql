@@ -43,6 +43,50 @@ CREATE TABLE tbl_bkloans (
 	bkloans_dtdue DATE NOT NULL
 );
 
---All tables are built. Next, fill them with information
---Test them with SELECT * from tbl_[name]
---Create 7 stored procedures
+INSERT INTO tbl_branch
+	(branch_name, branch_address)
+	VALUES
+	('Sharpstown', '500 College St SE, Lacey, WA 98503'),
+	('Central', '415 12th Ave SW, Olympia, WA 98501'),
+	('Tumwater','7023 New Market St SW, Tumwater, WA 98501'),
+	('Timberland', '313 8th Ave SE, Olympia, WA 98501')
+;
+SELECT * FROM tbl_branch
+
+INSERT INTO  tbl_publisher
+	(publisher_name, publisher_address, publisher_phone)
+	VALUES
+	('Doubleday','8863 1st St. San Pablo, CA 94806', '(419) 461-8448'),
+	('Viking', '506 St Margarets Avenue Chesapeake, VA 23320',	'(561) 425-5660'),
+	('Penguin Random House', '8151 Smith Drive Bridgewater, NJ 08807', '(997) 481-5478'),
+	('Hachette Livre', '860 South Longbranch Street Wantagh, NY 11793',	'(863) 319-2916'),
+	('HarperCollins', '93 Applegate Ave. Waterford, MI 48329',	'(904) 889-7685'),
+	('Pan Macmillan', '584 South Ryan Lane Libertyville, IL 60048',	'(736) 562-1742')
+;
+SELECT * FROM tbl_publisher
+
+INSERT INTO tbl_bks
+	(bks_title)
+	VALUES
+	('The Lost Tribe'),
+	('Carrie'),
+	('It'),
+	('A Tale of Two Cities'),
+	('The Lord of the Rings'),
+	('The Little Prince'),
+	('Harry Potter and the Philosophers Stone'),
+	('The Little Prince'),
+	('The Hobbit'),
+	('Alices Adventures in Wonderland'),
+	('Dream of the Red Chamber'),
+	('And Then There Were None'),
+	('The Lion, the Witch and the Wardrobe'),
+	('She: A History of Adventure'),
+	('The Da Vinci Code'),
+	('The Adventures of Pinocchio'),
+	('The Catcher in the Rye'),
+	('The Alchemist'),
+	('Harry Potter and the Deathly Hallows'),
+	('Steps to Christ')
+;
+SELECT * FROM tbl_bks
