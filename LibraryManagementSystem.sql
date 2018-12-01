@@ -89,4 +89,14 @@ INSERT INTO tbl_bks
 	('Harry Potter and the Deathly Hallows', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'HarperCollins')),
 	('Steps to Christ', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Pan Macmillan'))
 ;
-SELECT * FROM tbl_bks
+SELECT * FROM tbl_bks --Why are there over 20 books?? And why are only the last 60+ correctly contain publisher IDs?
+
+UPDATE tbl_bks
+SET bks_publisher_id = (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Pan Macmillan')
+WHERE bks_title = 'Steps to Christ'
+
+
+INSERT INTO tbl_bkcopies
+	(bkcopies_book_id, bkcopies_branch_id, bkcopies_number_of_copies)
+	VALUES
+	((SELECT bks_id FROM tbl_bks), (SELECT branch_id FROM tbl_branch WHERE --This needs help
