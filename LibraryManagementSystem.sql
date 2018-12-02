@@ -260,7 +260,68 @@ INSERT INTO tbl_bkloans
 ;
 SELECT * from tbl_bkloans
 
---Create INSERT INTO TABLE FOR BOOK_LOANS table
+--QUERY #1
+CREATE PROCEDURE dbo.spQuery1
+AS
+SELECT a1.bks_title as 'Title', a2.branch_name as 'Branch', a3.bkcopies_number_of_copies as 'Number of copies' 
+FROM tbl_bkcopies a3
+INNER JOIN tbl_bks a1 ON a1.bks_id = a3.bkcopies_book_id
+INNER JOIN tbl_branch a2 ON a2.branch_id = a3.bkcopies_branch_id
+WHERE bks_title='The Lost Tribe' AND branch_name='Sharpstown'
+;
+GO
+
+EXECUTE dbo.spQuery1
+
+--QUERY #2
+CREATE PROCEDURE dbo.spQuery2
+AS
+SELECT a1.bks_title as 'Title', a2.branch_name as 'Branch', a3.bkcopies_number_of_copies as 'Number of copies' 
+FROM tbl_bkcopies a3
+INNER JOIN tbl_bks a1 ON a1.bks_id = a3.bkcopies_book_id
+INNER JOIN tbl_branch a2 ON a2.branch_id = a3.bkcopies_branch_id
+WHERE bks_title='The Lost Tribe'
+;
+GO
+
+EXECUTE dbo.spQuery2
+
+--QUERY #3
+CREATE PROCEDURE dbo.spQuery3
+AS
+SELECT a1.borrower_name as 'Name', a2.bkloans_dtout as 'Check-out date', a2.bkloans_dtdue as 'Due Date'
+FROM tbl_bkloans a2
+INNER JOIN tbl_borrower a1 ON a1.borrower_cardno = a2.bkloans_card_no
+WHERE bkloans_dtout >='2018-12-2' AND bkloans_dtdue <= '2018-12-3'
+;
+GO
+
+EXECUTE dbo.spQuery3
+
+--QUERY #4
+CREATE PROCEDURE dbo.spQuery4
+AS
+SELECT a1.bks_title as 'Title', a2.borrower_name as 'Name', a2.borrower_address as 'Address'
+	FROM tbl_bkloans a3
+	INNER JOIN tbl_bks a1 ON a1.bks_id = a3.bkloans_book_id
+	INNER JOIN tbl_branch a4 ON a4.branch_id = a3.bkloans_branch_id
+	INNER JOIN tbl_borrower a2 ON a2.borrower_cardno = a3.bkloans_card_no
+	WHERE bkloans_dtdue = '2018-12-3' AND branch_name = 'Sharpstown'
+;
+GO
+
+EXECUTE dbo.spQuery4
+
+--QUERY #5 -- FIX
+SELECT a1.branch_name, COUNT(*) as 'Loaned Books'
+	FROM tbl_bkloans a3
+	INNER JOIN tbl_bks a2 ON a2.bks_id = a3.bkloans_book_id
+	INNER JOIN tbl_branch a1 ON a1.branch_id = a3.bkloans_branch_id
+	WHERE bkloans_dtout <='2018-12-2' AND branch_name='Central'
+;
+
+DROP PROC dbo.spcopiesGet
+GO
 
 DROP TABLE tbl_bkauthors ;
 DROP TABLE tbl_bkloans;
