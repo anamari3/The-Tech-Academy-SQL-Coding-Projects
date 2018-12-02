@@ -75,7 +75,7 @@ INSERT INTO tbl_bks
 	('The Lord of the Rings',(SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'HarperCollins')),
 	('The Little Prince', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Pan Macmillan')),
 	('Harry Potter and the Philosophers Stone', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Penguin Random House')),
-	('The Little Prince', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Doubleday')),
+	('The Little Princess', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Doubleday')),
 	('The Hobbit', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Viking')),
 	('Alices Adventures in Wonderland', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Hachette Livre')),
 	('Dream of the Red Chamber', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'HarperCollins')),
@@ -111,7 +111,7 @@ INSERT INTO tbl_bkcopies
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Prince'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), 4),
 
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Philosophers Stone'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 4),
-	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Prince'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 3),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Princess'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 3),
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Hobbit'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 4),
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Alices Adventures in Wonderland'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 7),
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Dream of the Red Chamber'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 4),
@@ -121,3 +121,78 @@ INSERT INTO tbl_bkcopies
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Deathly Hallows'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 3),
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Catcher in the Rye'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 4),
 	
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Alchemist'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 3),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Deathly Hallows'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 5),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Steps to Christ'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 3),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lost Tribe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 3),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Prince'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 6),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Philosophers Stone'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 4),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Catcher in the Rye'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 3),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Hobbit'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 2),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Alices Adventures in Wonderland'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 2),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Dream of the Red Chamber'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 6),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'And Then There Were None'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 4),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lost Tribe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), 7),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Carrie'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), 3),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'It'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), 5),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'A Tale of Two Cities'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), 4),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Steps to Christ'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), 6),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Alchemist'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), 4),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Catcher in the Rye'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), 4),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Da Vinci Code'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), 2),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'She: A History of Adventure'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), 2),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lion, the Witch and the Wardrobe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), 6)
+;
+SELECT * from tbl_bkcopies
+
+INSERT INTO tbl_borrower
+	(borrower_name, borrower_address, borrower_phone)
+	VALUES
+	('Argentina Mally', '94 Orchard Ave. Fairburn, GA 30213', '(660) 989-3086'),
+	('Ian Kilkenny', '844 Cottage St. Moses Lake, WA 98837', '(264) 649-0349'),
+	('Roseline Gabler', '945 8th St. Birmingham, AL 35209',	'(945) 302-7837'),
+	('Enda Vazques', '7709 South Bellevue Ave. Indian Trail, NC 28079',	'(298) 710-9371'),
+	('Marcy Conaway', '1 Foxrun St. Staunton, VA 24401', '(634) 483-6477'),
+	('Laronda Leppert', '72 Summer Ave. Irvington, NJ 07111', '(626) 770-2115'),
+	('Brock Malan', '8020 Augusta Dr. Opa Locka, FL 33054', '(233) 810-1652'),
+	('Oren Draeger', '713 Tailwater St. Chatsworth, GA 30705', '(979) 422-4246')
+;
+SELECT * from tbl_borrower
+
+INSERT INTO tbl_bkauthors
+	(bkauthors_book_id, bkauthors_name)
+	VALUES
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lost Tribe'), 'H. Rider Haggard'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Carrie'), 'Stephen King'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'It'), 'Stephen King'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'A Tale of Two Cities'), 'Charles Dickens'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lord of the Rings'), 'J. R. R. Tolkien'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Prince'), 'Antoine de Saint-Exupéry'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Philosophers Stone'), 'J. K. Rowling'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Princess'), 'Antoine de Saint-Exupéry'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Hobbit'), 'J. R. R. Tolkien'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Alices Adventures in Wonderland'), 'Lewis Carroll'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Dream of the Red Chamber'), 'Cao Xueqin'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'And Then There Were None'), 'Agatha Christie'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lion, the Witch and the Wardrobe'), 'C. S. Lewis'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'She: A History of Adventure'), 'H. Rider Haggard'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Da Vinci Code'), 'Antoine de Saint-Exupéry'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Adventures of Pinocchio'), 'H. Rider Haggard'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Catcher in the Rye'), 'Cao Xueqin'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Alchemist'), 'Cao Xueqin'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Deathly Hallows'), 'J. K. Rowling'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Steps to Christ'), 'Lewis Carroll')
+;
+SELECT * from tbl_bkauthors
+
+--Create INSERT INTO TABLE FOR BOOK_LOANS table
+
+DROP TABLE tbl_bkauthors ;
+DROP TABLE tbl_bkloans;
+DROP TABLE tbl_borrower;
+DROP TABLE tbl_bkcopies;
+DROP TABLE tbl_branch;
+DROP TABLE tbl_bks;
+DROP TABLE tbl_publisher;
+GO
