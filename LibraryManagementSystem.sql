@@ -91,10 +91,6 @@ INSERT INTO tbl_bks
 ;
 SELECT * FROM tbl_bks 
 
-UPDATE tbl_bks
-SET bks_publisher_id = (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Pan Macmillan')
-WHERE bks_title = 'Steps to Christ'
-
 
 INSERT INTO tbl_bkcopies
 	(bkcopies_book_id, bkcopies_branch_id, bkcopies_number_of_copies)
@@ -120,7 +116,9 @@ INSERT INTO tbl_bkcopies
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Steps to Christ'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 2),
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Deathly Hallows'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 3),
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Catcher in the Rye'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 4),
-	
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Carrie'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 4),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'It'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), 4),
+		
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Alchemist'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 3),
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Deathly Hallows'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 5),
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Steps to Christ'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), 3),
@@ -312,13 +310,46 @@ GO
 
 EXECUTE dbo.spQuery4
 
---QUERY #5 -- FIX
-SELECT a1.branch_name, COUNT(*) as 'Loaned Books'
-	FROM tbl_bkloans a3
-	INNER JOIN tbl_bks a2 ON a2.bks_id = a3.bkloans_book_id
-	INNER JOIN tbl_branch a1 ON a1.branch_id = a3.bkloans_branch_id
-	WHERE bkloans_dtout <='2018-12-2' AND branch_name='Central'
+--QUERY #5 --
+CREATE PROCEDURE dbo.spQuery5
+AS
+SELECT a1.branch_name as 'Branch', COUNT(*) AS 'Loaned Books'
+	FROM tbl_bkloans a2
+	INNER JOIN tbl_bks a3 ON a3.bks_id = a2.bkloans_book_id
+	INNER JOIN tbl_branch a1 ON a1.branch_id = a2.bkloans_branch_id
+	WHERE bkloans_dtout <='2018-12-2'
+	GROUP BY branch_name HAVING COUNT(*)>0
 ;
+GO
+
+EXECUTE dbo.spQuery5
+
+--QUERY #6
+CREATE PROCEDURE dbo.spQuery6
+AS
+SELECT borrower_name as 'Name', borrower_address as 'Address', COUNT(*) AS NumberofBooksCheckedOut
+	FROM tbl_bkloans
+	INNER JOIN tbl_borrower ON borrower_cardno = tbl_bkloans.bkloans_card_no
+	GROUP BY borrower_name, borrower_address HAVING COUNT(*) > 5
+;
+GO
+
+EXECUTE dbo.spQuery6
+
+--QUERY #7
+CREATE PROCEDURE dbo.spQuery7
+AS
+SELECT a1.bks_title as 'Title', a2.bkcopies_number_of_copies as 'Number of Copies'
+	FROM tbl_bks a1
+	INNER JOIN tbl_bkcopies a2 ON a2.bkcopies_book_id = a1.bks_id
+	INNER JOIN tbl_bkauthors a3 ON a3.bkauthors_book_id = a1.bks_id
+	INNER JOIN tbl_branch a4 ON a4.branch_id = a2.bkcopies_branch_id
+	WHERE bkauthors_name ='Stephen King' AND branch_name ='Central'
+;
+GO
+
+EXECUTE dbo.spQuery7
+
 
 DROP PROC dbo.spcopiesGet
 GO
@@ -330,4 +361,13 @@ DROP TABLE tbl_bkcopies;
 DROP TABLE tbl_branch;
 DROP TABLE tbl_bks;
 DROP TABLE tbl_publisher;
+GO
+
+DROP PROC dbo.spQuery1;
+DROP PROC dbo.spQuery2;
+DROP PROC dbo.spQuery3;
+DROP PROC dbo.spQuery4;
+DROP PROC dbo.spQuery5;
+DROP PROC dbo.spQuery6;
+DROP PROC dbo.spQuery7;
 GO
