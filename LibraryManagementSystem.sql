@@ -89,7 +89,7 @@ INSERT INTO tbl_bks
 	('Harry Potter and the Deathly Hallows', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'HarperCollins')),
 	('Steps to Christ', (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Pan Macmillan'))
 ;
-SELECT * FROM tbl_bks --Why are there over 20 books?? And why are only the last 60+ correctly contain publisher IDs?
+SELECT * FROM tbl_bks 
 
 UPDATE tbl_bks
 SET bks_publisher_id = (SELECT publisher_id FROM tbl_publisher WHERE publisher_name = 'Pan Macmillan')
@@ -185,6 +185,80 @@ INSERT INTO tbl_bkauthors
 	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Steps to Christ'), 'Lewis Carroll')
 ;
 SELECT * from tbl_bkauthors
+
+INSERT INTO tbl_bkloans
+	(bkloans_book_id, bkloans_branch_id, bkloans_card_no, bkloans_dtout, bkloans_dtdue)
+	VALUES
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lost Tribe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Roseline Gabler'), '01/13/2018','01/25/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lost Tribe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Roseline Gabler'), '01/21/2018','02/02/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lost Tribe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Marcy Conaway'), '01/29/2018','02/10/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Carrie'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Enda Vazques'), '02/06/2018','02/18/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Carrie'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Enda Vazques'), '02/14/2018','02/26/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Carrie'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Argentina Mally'), '02/22/2018','03/06/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'It'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Brock Malan'), '03/02/2018','03/14/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'It'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Oren Draeger'), '03/10/2018','03/22/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'It'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Roseline Gabler'), '03/18/2018','03/30/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'A Tale of Two Cities'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Brock Malan'), '03/26/2018','04/07/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'A Tale of Two Cities'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Oren Draeger'), '04/03/2018','04/15/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'A Tale of Two Cities'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Marcy Conaway'), '04/11/2018','04/23/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lord of the Rings'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Argentina Mally'), '04/19/2018','05/01/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lord of the Rings'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Argentina Mally'), '04/27/2018','05/09/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lord of the Rings'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Roseline Gabler'), '05/05/2018','05/17/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lord of the Rings'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Roseline Gabler'), '05/13/2018','05/25/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Prince'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Laronda Leppert'), '05/21/2018','06/02/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Prince'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Enda Vazques'), '05/29/2018','06/10/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Prince'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Enda Vazques'), '06/06/2018','06/18/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Philosophers Stone'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Oren Draeger'), '06/14/2018','06/26/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Philosophers Stone'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Argentina Mally'), '06/22/2018','07/04/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Philosophers Stone'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Marcy Conaway'), '06/30/2018','07/12/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Princess'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Ian Kilkenny'), '07/08/2018','07/20/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Princess'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Enda Vazques'), '07/16/2018','07/28/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Little Princess'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Enda Vazques'), '07/24/2018','08/05/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Hobbit'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Roseline Gabler'), '08/01/2018','08/13/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Hobbit'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Ian Kilkenny'), '08/09/2018','08/21/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Alices Adventures in Wonderland'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Ian Kilkenny'), '08/17/2018','08/29/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Alices Adventures in Wonderland'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Marcy Conaway'), '08/25/2018','09/06/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Alices Adventures in Wonderland'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Oren Draeger'), '09/02/2018','09/14/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'And Then There Were None'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Oren Draeger'), '09/10/2018','09/22/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'And Then There Were None'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Marcy Conaway'), '09/18/2018','09/30/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lion, the Witch and the Wardrobe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Laronda Leppert'), '09/26/2018','10/08/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lion, the Witch and the Wardrobe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Tumwater'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Oren Draeger'), '10/04/2018','10/16/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lion, the Witch and the Wardrobe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Roseline Gabler'), '10/12/2018','10/24/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Lion, the Witch and the Wardrobe'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Roseline Gabler'), '10/20/2018','11/01/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'She: A History of Adventure'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Argentina Mally'), '10/28/2018','11/09/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'She: A History of Adventure'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Enda Vazques'), '11/05/2018','11/17/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Da Vinci Code'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Enda Vazques'), '11/13/2018','11/25/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Da Vinci Code'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Argentina Mally'), '11/21/2018','12/03/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Adventures of Pinocchio'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Brock Malan'), '11/29/2018','12/11/2018'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Adventures of Pinocchio'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Roseline Gabler'), '12/07/2018','12/19/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Catcher in the Rye'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Roseline Gabler'), '12/15/2018','12/27/2018'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Alchemist'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Enda Vazques'), '12/23/2018','01/04/2019'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Alchemist'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Enda Vazques'), '12/31/2018','01/12/2019'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'The Alchemist'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Ian Kilkenny'), '01/08/2019','01/20/2019'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Deathly Hallows'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Laronda Leppert'), '01/16/2019','01/28/2019'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Harry Potter and the Deathly Hallows'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Sharpstown'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Enda Vazques'), '01/24/2019','02/05/2019'),
+
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Steps to Christ'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Central'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Brock Malan'), '02/01/2019','02/13/2019'),
+	((SELECT bks_id FROM tbl_bks WHERE bks_title = 'Steps to Christ'), (SELECT branch_id FROM tbl_branch WHERE branch_name = 'Timberland'), (SELECT borrower_cardno FROM tbl_borrower WHERE borrower_name = 'Brock Malan'), '02/09/2019','02/21/2019')
+;
+SELECT * from tbl_bkloans
 
 --Create INSERT INTO TABLE FOR BOOK_LOANS table
 
