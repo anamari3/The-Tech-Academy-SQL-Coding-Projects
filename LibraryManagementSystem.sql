@@ -287,10 +287,9 @@ EXECUTE dbo.spQuery2
 --QUERY #3
 CREATE PROCEDURE dbo.spQuery3
 AS
-SELECT a1.borrower_name as 'Name', a2.bkloans_dtout as 'Check-out date', a2.bkloans_dtdue as 'Due Date'
-FROM tbl_bkloans a2
-INNER JOIN tbl_borrower a1 ON a1.borrower_cardno = a2.bkloans_card_no
-WHERE bkloans_dtout >='2018-12-2' AND bkloans_dtdue <= '2018-12-3'
+SELECT borrower_name as 'Name'
+FROM tbl_borrower
+WHERE borrower_cardno NOT IN (SELECT bkloans_card_no FROM tbl_bkloans)
 ;
 GO
 
@@ -313,12 +312,8 @@ EXECUTE dbo.spQuery4
 --QUERY #5 --
 CREATE PROCEDURE dbo.spQuery5
 AS
-SELECT a1.branch_name as 'Branch', COUNT(*) AS 'Loaned Books'
-	FROM tbl_bkloans a2
-	INNER JOIN tbl_bks a3 ON a3.bks_id = a2.bkloans_book_id
-	INNER JOIN tbl_branch a1 ON a1.branch_id = a2.bkloans_branch_id
-	WHERE bkloans_dtout <='2018-12-2'
-	GROUP BY branch_name HAVING COUNT(*)>0
+SELECT * from tbl_branch
+INNER JOIN tbl_bkloans ON branch_id = branch_id
 ;
 GO
 
