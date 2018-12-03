@@ -287,11 +287,13 @@ EXECUTE dbo.spQuery2
 --QUERY #3
 CREATE PROCEDURE dbo.spQuery3
 AS
-SELECT borrower_name as 'Name'
-FROM tbl_borrower
-WHERE borrower_cardno NOT IN (SELECT bkloans_card_no FROM tbl_bkloans)
+BEGIN
+SELECT a2.bkloans_card_no as 'Books Checked Out', a1.borrower_name as 'Name'
+FROM tbl_borrower a1
+FULL OUTER JOIN tbl_bkloans a2 ON a2.bkloans_card_no = a1.borrower_cardno
+WHERE bkloans_card_no IS NULL
 ;
-GO
+END
 
 EXECUTE dbo.spQuery3
 
@@ -312,8 +314,9 @@ EXECUTE dbo.spQuery4
 --QUERY #5 --
 CREATE PROCEDURE dbo.spQuery5
 AS
-SELECT * from tbl_branch
-INNER JOIN tbl_bkloans ON branch_id = branch_id
+SELECT COUNT(bkloans_branch_id) as 'Number of Books Checked Out', a2.branch_name as 'Branch' from tbl_bkloans a1
+INNER JOIN tbl_branch a2 ON a2.branch_id = a1.bkloans_branch_id
+GROUP BY branch_name
 ;
 GO
 
