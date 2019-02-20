@@ -1,2 +1,4 @@
 # The-Tech-Academy-SQL-Coding-Projects
 Database and SQL
+
+CREATED A DATABASE AND SCHEMA USING VISUAL DIAGRAM (81)
